@@ -216,7 +216,9 @@ abstract class Model
      */
     public function getChanges()
     {
-        return array_intersect_key($this->attributes, $this->changed);
+        $array = array_intersect_key($this->attributes, $this->changed);
+        return array_filter($array, function($value) { return $value !== ''; });
+
     }
 
     /**
